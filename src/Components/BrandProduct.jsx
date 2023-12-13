@@ -7,8 +7,8 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 
 function BrandProduct() {
   // const products = useLoaderData()
-  const [search, setSearch] = useState("");
-  const [asc, setAsc] = useState(true);
+  // const [search, setSearch] = useState("");
+  // const [asc, setAsc] = useState(true);
   const [products, setProducts] = useState([]);
   const { brand } = useParams();
   const axiosSecure = useAxiosSecure();
@@ -16,15 +16,15 @@ function BrandProduct() {
 
   useEffect(() => {
     axiosSecure
-      .get(`/products?search=${search}&sort=${asc ? "asc" : "dsc"}`)
+      .get(`/brandproducts/${brand}`)
       .then((res) => setProducts(res.data));
-  }, [asc,search]);
+  }, []);
   
-  const handleSearch=e=>{
-    e.preventDefault()
-    const searchValue = e.target.search.value 
-    setSearch(searchValue)
-  }
+  // const handleSearch=e=>{
+  //   e.preventDefault()
+  //   const searchValue = e.target.search.value 
+  //   setSearch(searchValue)
+  // }
 
 
   return (
@@ -88,14 +88,14 @@ function BrandProduct() {
         </h1>
 
         {/*------- ascending button ------ */}
-        <div className="flex justify-center my-5">
+        {/* <div className="flex justify-center my-5">
           <button onClick={() => setAsc(!asc)} className="btn btn-warning">
             {asc ? "Price High to Low" : "Prcie Low to High"}
           </button>
-        </div>
+        </div> */}
 
         {/* search input  */}
-        <div className="flex justify-center">
+        {/* <div className="flex justify-center">
           <form onSubmit={handleSearch}>
             <div className="join">
               <input
@@ -107,12 +107,12 @@ function BrandProduct() {
               <button type="submit" className="btn btn-primary join-item">Search</button>
             </div>
           </form>
-        </div>
+        </div> */}
 
         {/* length: {products.length} */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {products.length ? (
-            products.map((product) => (
+            products?.map((product) => (
               <div
                 key={product._id}
                 className="card card-side justify-center items-center lg:flex-row flex-col shadow-xl bg-orange-600 bg-opacity-10 p-2 ">
