@@ -77,7 +77,7 @@ function Navbar(props) {
             </div>
           ) : (
             
-             <NavLink to="/login">Log In</NavLink>
+             <NavLink to="/login" className='hover:text-red-500'>Log In</NavLink>
         
           )}
         </div>
